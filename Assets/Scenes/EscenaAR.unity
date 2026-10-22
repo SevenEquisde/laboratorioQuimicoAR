@@ -214,7 +214,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 191}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &605529146
 MonoBehaviour:
@@ -263,8 +263,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -630,7 +630,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 132}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &832969767
 MonoBehaviour:
@@ -679,8 +679,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1298,6 +1298,8 @@ GameObject:
   - component: {fileID: 1698557006}
   - component: {fileID: 1698557005}
   - component: {fileID: 1698557004}
+  - component: {fileID: 1698557007}
+  - component: {fileID: 1698557008}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -1356,6 +1358,37 @@ Transform:
   - {fileID: 1310415508}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1698557007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698557003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67409a41a72fd7a4aa90ba6af5e94c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GestorNavegacion
+  gestorImagenesAR: {fileID: 1698557004}
+  prefabExperimento1: {fileID: 8488303401494560491, guid: ea42d64bb431e3b4eb151db790b4be58, type: 3}
+  prefabExperimento2: {fileID: 0}
+  textoNombre: {fileID: 605529146}
+  textoDescripcion: {fileID: 832969767}
+  textoMateriales: {fileID: 0}
+--- !u!114 &1698557008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698557003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491cf690781561f48a998214c312db66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectorTapAR
+  camaraAR: {fileID: 665933880}
 --- !u!1 &1809290267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1471,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1809290270}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1698557007}
+        m_TargetAssemblyTypeName: GestorNavegacion, Assembly-CSharp
+        m_MethodName: VolverAlMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1809290270
 MonoBehaviour:
   m_ObjectHideFlags: 0
