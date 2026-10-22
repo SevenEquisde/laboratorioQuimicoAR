@@ -1476,7 +1476,7 @@ MonoBehaviour:
       m_Calls: []
   m_SerializedLibrary: {fileID: 11400000, guid: 8621ef8dff3609749b194e7acefee5ac, type: 2}
   m_MaxNumberOfMovingImages: 0
-  m_TrackedImagePrefab: {fileID: 8488303401494560491, guid: ea42d64bb431e3b4eb151db790b4be58, type: 3}
+  m_TrackedImagePrefab: {fileID: 0}
 --- !u!114 &1698557005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,7 +1503,7 @@ Transform:
   m_GameObject: {fileID: 1698557003}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1525,6 +1525,9 @@ MonoBehaviour:
   gestorImagenesAR: {fileID: 1698557004}
   prefabExperimento1: {fileID: 8488303401494560491, guid: ea42d64bb431e3b4eb151db790b4be58, type: 3}
   prefabExperimento2: {fileID: 0}
+  nombreMarcador: Marcador_1
+  escalaAR: 0.005
+  alturaAR: 0
   textoNombre: {fileID: 605529146}
   textoDescripcion: {fileID: 832969767}
   textoMateriales: {fileID: 0}

@@ -13,7 +13,7 @@ public class ReaccionQuimica : MonoBehaviour
     public Color colorFinal = new Color(1f, 0.05f, 0.55f, 0.85f);
 
     [Header("Animacion")]
-    public float angulo = 35f;
+    public float angulo = -50f;
     public float duracionColor = 2f;
 
     private Material materialLiquido;
