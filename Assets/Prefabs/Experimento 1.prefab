@@ -31,9 +31,9 @@ Transform:
   m_Children:
   - {fileID: 3113736194371084356}
   - {fileID: 7433372583020944016}
-  - {fileID: 3975481150211148761}
   - {fileID: 8773852824343879983}
   - {fileID: 830372879436135792}
+  - {fileID: 919567826595496870}
   m_Father: {fileID: 2693719033302319679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4429099317406282215
@@ -126,6 +126,38 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7319517813326751010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919567826595496870}
+  m_Layer: 0
+  m_Name: PivoteTubo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &919567826595496870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7319517813326751010}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.74, y: 13.54, z: 141}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3975481150211148761}
+  m_Father: {fileID: 6007803708250044587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8488303401494560491
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2693719033302319679}
   - component: {fileID: 5330872808060013217}
+  - component: {fileID: 5727512246613313220}
   m_Layer: 0
   m_Name: Experimento 1
   m_TagString: Untagged
@@ -180,6 +213,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 33.478493, y: 23.923595, z: 22.767887}
   m_Center: {x: 0.13438416, y: 11.3346195, z: 0.44327116}
+--- !u!114 &5727512246613313220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488303401494560491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf550935cce589440847b069e85cad57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReaccionQuimica
+  liquido: {fileID: 5206547649472919749}
+  pivoteTubo: {fileID: 919567826595496870}
+  colorInicial: {r: 0.85, g: 0.95, b: 1, a: 0.65}
+  colorFinal: {r: 1, g: 0.05, b: 0.55, a: 0.85}
+  angulo: 35
+  duracionColor: 2
 --- !u!1001 &3223609690814318511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -248,7 +299,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6007803708250044587}
+    m_TransformParent: {fileID: 919567826595496870}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4577eb7f5e66047458be5646ebdd43be, type: 3}
       propertyPath: m_LocalScale.x
@@ -264,15 +315,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4577eb7f5e66047458be5646ebdd43be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.7
+      value: 0.03999996
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4577eb7f5e66047458be5646ebdd43be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: -6.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4577eb7f5e66047458be5646ebdd43be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 140.91876
+      value: -0.08123779
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4577eb7f5e66047458be5646ebdd43be, type: 3}
       propertyPath: m_LocalRotation.w

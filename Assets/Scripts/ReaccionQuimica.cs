@@ -1,55 +1,103 @@
+
+using System.Collections;
 using UnityEngine;
 
 public class ReaccionQuimica : MonoBehaviour
 {
-    [Header("Configuración de Animación")]
-    [Tooltip("Nombre del parámetro Trigger en el Animator o del clip de animación")]
-    public string nombreTriggerOAnimacion = "Reaccionar";
+    [Header("Objetos")]
+    public Renderer liquido;
+    public Transform pivoteTubo;
 
-    [Header("Efecto Opcional de Partículas (Espuma/Humo)")]
-    public ParticleSystem efectoParticulas;
+    [Header("Colores")]
+    public Color colorInicial = new Color(0.85f, 0.95f, 1f, 0.65f);
+    public Color colorFinal = new Color(1f, 0.05f, 0.55f, 0.85f);
 
-    private Animator componenteAnimator;
-    private Animation componenteAnimation;
+    [Header("Animacion")]
+    public float angulo = 35f;
+    public float duracionColor = 2f;
 
-    private void Awake()
+    private Material materialLiquido;
+    private Quaternion rotacionInicial;
+    private bool reaccionIniciada = false;
+
+    void Awake()
     {
-        // Busca el componente Animator o Animation en este objeto o en sus objetos hijos
-        componenteAnimator = GetComponentInChildren<Animator>();
-        componenteAnimation = GetComponentInChildren<Animation>();
+        if (liquido == null || pivoteTubo == null)
+        {
+            Debug.LogError("Faltan referencias en ReaccionQuimica");
+            enabled = false;
+            return;
+        }
+
+        materialLiquido = liquido.material;
+        materialLiquido.SetColor("_BaseColor", colorInicial);
+        rotacionInicial = pivoteTubo.localRotation;
     }
 
-    // Este método será llamado cuando el usuario haga tap sobre el modelo 3D
+    [ContextMenu("Probar reaccion")]
     public void IniciarReaccion()
     {
-        Debug.Log("Reacción química activada en: " + gameObject.name);
+        if (reaccionIniciada || !enabled) return;
 
-        // Opción A: Si el modelo usa el sistema moderno Animator
-        if (componenteAnimator != null)
+        StartCoroutine(AnimarReaccion());
+    }
+
+    IEnumerator AnimarReaccion()
+    {
+        reaccionIniciada = true;
+
+        Quaternion inclinada = rotacionInicial *
+            Quaternion.Euler(0f, 0f, angulo);
+
+        // Inclinar tubo
+        yield return Girar(rotacionInicial, inclinada, 0.6f);
+
+        // Cambiar color del liquido
+        float tiempo = 0f;
+
+        while (tiempo < duracionColor)
         {
-            // Si creaste un parámetro Trigger en el Animator Controller, lo activa;
-            // de lo contrario, reproduce el estado de animación desde el inicio (tiempo 0)
-            componenteAnimator.SetTrigger(nombreTriggerOAnimacion);
-            componenteAnimator.Play(nombreTriggerOAnimacion, 0, 0f);
-        }
-        // Opción B: Si el modelo usa el sistema clásico Animation
-        else if (componenteAnimation != null)
-        {
-            if (!string.IsNullOrEmpty(nombreTriggerOAnimacion) && componenteAnimation.GetClip(nombreTriggerOAnimacion) != null)
-            {
-                componenteAnimation.Play(nombreTriggerOAnimacion);
-            }
-            else
-            {
-                // Reproduce la animación por defecto que traiga el modelo
-                componenteAnimation.Play();
-            }
+            tiempo += Time.deltaTime;
+
+            float progreso = Mathf.Clamp01(
+                tiempo / Mathf.Max(0.1f, duracionColor)
+            );
+
+            materialLiquido.SetColor(
+                "_BaseColor",
+                Color.Lerp(colorInicial, colorFinal, progreso)
+            );
+
+            yield return null;
         }
 
-        // Si el equipo agregó un sistema de partículas (burbujas o vapor), lo reproduce
-        if (efectoParticulas != null)
+        materialLiquido.SetColor("_BaseColor", colorFinal);
+
+        // Regresar tubo
+        yield return Girar(inclinada, rotacionInicial, 0.6f);
+
+        Debug.Log("Reaccion quimica completada");
+    }
+
+    IEnumerator Girar(Quaternion desde, Quaternion hasta, float segundos)
+    {
+        float t = 0f;
+
+        while (t < 1f)
         {
-            efectoParticulas.Play();
+            t = Mathf.Min(1f, t + Time.deltaTime / segundos);
+
+            pivoteTubo.localRotation =
+                Quaternion.Slerp(desde, hasta, t);
+
+            yield return null;
         }
     }
+
+    void OnDestroy()
+    {
+        if (materialLiquido != null)
+            Destroy(materialLiquido);
+    }
 }
+
